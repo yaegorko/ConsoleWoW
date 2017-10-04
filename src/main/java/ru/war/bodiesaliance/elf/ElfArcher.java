@@ -8,14 +8,13 @@ import ru.war.warclases.Solider;
 public class ElfArcher extends Archer implements Elf {
 
     public void rangeAttack(Solider target) {
-        System.out.println(getClass().getName() + " Стреляю на 7 по " + target.toString());
+        System.out.println(String.format("%s Стреляю из лука по %s на 7!", this.toString(), target.toString()));
         target.setHealth(target.getHealth() - 7);
-        System.out.println("У " + target.toString() + "осталось:" + target.getHealth());
     }
 
 
     public void attack(Solider target) {
-        System.out.println(getClass().getName() + " Бъю на 3 по " + target.toString());
+        System.out.println(String.format("%s Атакую противника %s на 3!", this.toString(), target.toString()));
         target.setHealth(target.getHealth() - 3);
 
     }

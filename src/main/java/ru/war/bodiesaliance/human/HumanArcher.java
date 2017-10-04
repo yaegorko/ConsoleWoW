@@ -8,11 +8,13 @@ public class HumanArcher extends Archer implements Human {
 
 
     public void rangeAttack(Solider target) {
-        System.out.println(getClass().getName() + " Атака на 5 " + target.toString());
+        System.out.println(String.format("%s Стреляю из арбалета по %s на 7!", this.toString(), target.toString()));
+        target.setHealth(target.getHealth() - 5);
     }
 
 
     public void attack(Solider target) {
-        System.out.println(getClass().getName() + " Атака на 3 " + target.toString());
+        System.out.println(String.format("%s Атакую %s на 3!", this.toString(), target.toString()));
+        target.setHealth(target.getHealth() - 3);
     }
 }

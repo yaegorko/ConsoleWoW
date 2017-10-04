@@ -8,11 +8,10 @@ public class ElfWizard extends Wizard implements Elf {
 
 
     public void rangeAttack(Solider target) {
-        System.out.println(getClass().getName() + " Пуляю на 10! " + target.toString());;
+        System.out.println(String.format("%s Атакую магией %s на 10!", this.toString(), target.toString()));
+        target.setHealth(target.getHealth() - 10);
     }
 
 
-    public void cast(Solider target) {
-        System.out.println(getClass().getName() + " Бафнул! " + target.toString());
-    }
+
 }

@@ -7,11 +7,13 @@ import ru.war.warclases.Solider;
 public class OrcArcher extends Archer implements Orc {
 
     public void rangeAttack(Solider target) {
-        System.out.println(getClass().getName() + " Атака на 3" + target.toString());
+        System.out.println(String.format("%s Стреляю из лука по %s на 3!", this.toString(), target.toString()));
+        target.setHealth(target.getHealth() - 3);
     }
 
 
     public void attack(Solider target) {
-        System.out.println(getClass().getName() + " Атака на 2 " + target.toString());
+        System.out.println(String.format("%s Удар клинком по %s на 2!", this.toString(), target.toString()));
+        target.setHealth(target.getHealth() - 2);
     }
 }

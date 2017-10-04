@@ -52,7 +52,11 @@ public  abstract class Solider {
         this.target = target;
     }
 
-    public void chooseAction(Solider target) {
+    public void chooseAction(Solider targetEnemy, Solider targetAlly) {
+
+    }
+
+    public void chooseAction(Solider targetEnemy) {
 
     }
 
@@ -69,6 +73,8 @@ public  abstract class Solider {
     }
 
     public String toString() {
-        return getClass().getName();
+        int n = getClass().getTypeName().lastIndexOf('.');
+        String s = getClass().getTypeName().substring(n + 1) + " (" + getHealth() + " HP)";
+        return s;
     }
 }

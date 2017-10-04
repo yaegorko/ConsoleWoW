@@ -14,6 +14,7 @@ import ru.war.bodieshorde.undead.UndeadWarrior;
 import ru.war.bodieshorde.undead.UndeadWizard;
 import ru.war.exceptions.WrongRandomException;
 import ru.war.warclases.Solider;
+import ru.war.warclases.Wizard;
 
 import java.util.Random;
 
@@ -79,10 +80,13 @@ public class GenerateFights {
     int number = 8;
 
     public void fight(Solider[] team1, Solider[] team2) {
-        while (number > 0) {
+
+
+        while (number >= 0) {
             action(team1, team2);
             action(team2, team1);
         }
+
 
         if (number == 0) {
             for (Solider solider : team1) {
@@ -102,12 +106,17 @@ public class GenerateFights {
     public void action(Solider[] teamAttack, Solider[] teamDefence) {
         int soliderNumber;
         int enemySoliderNumber = random(8);
+        int allySoliderNumber = random(8);
         if (number > 0) {
             soliderNumber = random(number);
         } else soliderNumber = random(1);
 
-        if (teamAttack[soliderNumber].isFatigue() == false) {
-            teamAttack[soliderNumber].chooseAction(teamDefence[enemySoliderNumber]);
+        if (!teamAttack[soliderNumber].isFatigue()) {
+            if (teamAttack[soliderNumber] instanceof Wizard) {
+                teamAttack[soliderNumber].chooseAction(teamDefence[enemySoliderNumber], teamAttack[allySoliderNumber]);
+            } else {
+                teamAttack[soliderNumber].chooseAction(teamDefence[enemySoliderNumber]);
+            }
             teamAttack[soliderNumber].setFatigue(true);
             if (soliderNumber != 7) {
                 Solider temp = teamAttack[soliderNumber];

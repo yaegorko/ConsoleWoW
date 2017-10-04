@@ -7,6 +7,7 @@ import ru.war.warclases.Warrior;
 public class ElfWarrior extends Warrior implements Elf {
 
     public void attack(Solider target) {
-        System.out.println(getClass().getName() + " Бью на 15! " + target.toString());
+        System.out.println(String.format("%s Атакую мечом %s на 15!", this.toString(), target.toString()));
+        target.setHealth(target.getHealth() - 15);
     }
 }

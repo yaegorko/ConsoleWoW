@@ -7,10 +7,12 @@ import ru.war.warclases.Solider;
 public class UndeadArcher extends Archer implements Undead {
 
     public void rangeAttack(Solider target) {
-        System.out.println(getClass().getName() + " Атака на 4 " + target.toString());
+        System.out.println(String.format("%s Стреляю из лука по %s на 4!", this.toString(), target.toString()));
+        target.setHealth(target.getHealth() - 4);
     }
 
     public void attack(Solider target) {
-        System.out.println(getClass().getName() + " Атака на 2 " + target.toString());
+        System.out.println(String.format("%s Атакую %s на 2!", this.toString(), target.toString()));
+        target.setHealth(target.getHealth() - 2);
     }
 }

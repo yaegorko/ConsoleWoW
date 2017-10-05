@@ -4,9 +4,14 @@ import ru.war.races.Elf;
 import ru.war.warclases.Archer;
 import ru.war.warclases.Solider;
 
-
+/**
+ * Эльф Лучник.
+ */
 public class ElfArcher extends Archer implements Elf {
-
+    /**
+     * Дистанционная атака. Может быть двойной если благославлен! Урон может быть снижен если проклят Некромантом.
+     * @param target враг.
+     */
     public void rangeAttack(Solider target) {
         if (this.isCursed()) {
             System.out.println(String.format("%s Я проклят!!! Cтреляю из лука по %s не на 7, а на 3!", this.toString(), target.toString()));
@@ -22,7 +27,10 @@ public class ElfArcher extends Archer implements Elf {
         }
         this.setCursed(false);
     }
-
+    /**
+     * Мили атака. Может быть двойной если благославлен! Урон может быть снижен если проклят Некромантом.
+     * @param target цель враг.
+     */
     public void attack(Solider target) {
         if (this.isCursed()) {
             System.out.println(String.format("%s Я проклят!!! Атакую по %s не на 3, а на 1!", this.toString(), target.toString()));

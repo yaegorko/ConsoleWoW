@@ -4,8 +4,15 @@ import ru.war.exceptions.WrongRandomException;
 
 import java.util.Random;
 
+/**
+ * Прототип для всех лучников.
+ */
 public abstract class Archer extends Solider {
 
+    /**
+     * Переопределяем выбор действий для лучников.
+     * @param target враг.
+     */
     public void chooseAction(Solider target) {
         Random random = new Random();
         int num = random.nextInt(2);
@@ -18,14 +25,25 @@ public abstract class Archer extends Solider {
         }
     }
 
+    /**
+     * Нет у лучников.
+     */
     public void cast() {
-        chooseAction(target);
+        chooseAction(this.getTarget());
     }
 
+    /**
+     * Дистанционная атака.
+     * @param target враг.
+     */
     public void rangeAttack(Solider target) {
 
     }
 
+    /**
+     * Мили атака.
+     * @param target враг.
+     */
     public void attack(Solider target) {
 
     }

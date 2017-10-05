@@ -1,8 +1,13 @@
 package ru.war.exceptions;
 
+/**
+ * Эксепшн.
+ */
 public class WrongRandomException extends RuntimeException {
-
-    public WrongRandomException(){
+    /**
+     * Эксепшн.
+     */
+    public WrongRandomException() {
         super("косяк с рандомом");
     }
 }

@@ -7,19 +7,34 @@ import ru.war.warclases.Wizard;
 
 import java.util.Random;
 
-public class UndeadWizard extends Wizard implements Undead{
+/**
+ * Некромант.
+ */
+public class UndeadWizard extends Wizard implements Undead {
 
-
+    /**
+     * Дистанционная атака.
+     * @param target враг.
+     */
     public void rangeAttack(Solider target) {
         System.out.println(String.format("%s Атакую магией %s на 5!", this.toString(), target.toString()));
         target.setHealth(target.getHealth() - 5);
     }
 
+    /**
+     * Проклятие. Снижает урон от атак на 1 ход.
+     * @param target враг.
+     */
     public void curse(Solider target) {
         System.out.println(String.format("%s Насылаю недуг на %s", this.toString(), target.toString()));
         target.setCursed(true);
     }
 
+    /**
+     * У некроманта только цели враги.
+     * @param targetEnemy цель враг.
+     * @param targetAlly цель союзник. Не используется.
+     */
     @Override
     public void chooseAction(Solider targetEnemy, Solider targetAlly) {
         Random random = new Random();

@@ -6,12 +6,17 @@ import ru.war.OutputTest;
 import ru.war.bodieshorde.orc.OrcWarrior;
 import ru.war.warclases.Solider;
 
+/**
+ * Тест.
+ */
 public class ElfWarriorTest extends OutputTest {
-
+    /**
+     * Тест.
+     */
     @Test
     public void elfWarriorTest() {
         Solider elfWarrior = new ElfWarrior();
         elfWarrior.chooseAction(new OrcWarrior());
-        Assert.assertEquals("Бью на 15!\r\n", output.toString());
+        Assert.assertEquals("ElfWarrior (100 HP) Атакую мечом OrcWarrior (100 HP) на 15!\r\n", getOutput().toString());
     }
 }

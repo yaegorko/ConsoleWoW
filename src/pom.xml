@@ -1,0 +1,12 @@
+﻿<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>src</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+	
+	<parent>
+		<groupId>ru.war</groupId>
+		<artifactId>ConsoleWow</artifactId>
+		<version>1.0</version>
+	</parent>
+</project>

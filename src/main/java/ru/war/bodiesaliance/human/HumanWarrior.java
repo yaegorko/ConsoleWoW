@@ -4,9 +4,15 @@ import ru.war.races.Human;
 import ru.war.warclases.Solider;
 import ru.war.warclases.Warrior;
 
+/**
+ * Человек воин.
+ */
 public class HumanWarrior extends Warrior implements Human {
 
-
+    /**
+     * Мили атака. Может быть двойной если благославлен! Урон может быть снижен если проклят Некромантом.
+     * @param target цель враг.
+     */
     public void attack(Solider target) {
         if (this.isCursed()) {
             System.out.println(String.format("%s Я проклят!!! Атакую мечом по %s не на 18, а на 9!", this.toString(), target.toString()));
@@ -14,11 +20,11 @@ public class HumanWarrior extends Warrior implements Human {
         } else {
             System.out.println(String.format("%s Атакую мечом %s на 18!", this.toString(), target.toString()));
             target.setHealth(target.getHealth() - 18);
-            if (this.isBlesed()) {
-                this.setBlesed(false);
-                System.out.println("Во имя Света! Я благословлен! Атакую еще раз!");
-                attack(target);
-            }
+        }
+        if (this.isBlesed()) {
+            this.setBlesed(false);
+            System.out.println("Во имя Света! Я благословлен! Атакую еще раз!");
+            attack(target);
         }
         this.setCursed(false);
     }

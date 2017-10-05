@@ -3,15 +3,15 @@ package ru.war.start;
 import ru.war.bodiesaliance.elf.ElfArcher;
 import ru.war.bodiesaliance.elf.ElfWarrior;
 import ru.war.bodiesaliance.elf.ElfWizard;
-import ru.war.bodiesaliance.human.HumanArcher;
+import ru.war.bodiesaliance.human.CrossbowMan;
 import ru.war.bodiesaliance.human.HumanWarrior;
 import ru.war.bodiesaliance.human.HumanWizard;
+import ru.war.bodieshorde.orc.Goblin;
 import ru.war.bodieshorde.orc.OrcArcher;
-import ru.war.bodieshorde.orc.OrcWarrior;
-import ru.war.bodieshorde.orc.OrcWizard;
-import ru.war.bodieshorde.undead.UndeadArcher;
-import ru.war.bodieshorde.undead.UndeadWarrior;
-import ru.war.bodieshorde.undead.UndeadWizard;
+import ru.war.bodieshorde.orc.Shaman;
+import ru.war.bodieshorde.undead.Hunter;
+import ru.war.bodieshorde.undead.Necromancer;
+import ru.war.bodieshorde.undead.Zomby;
 import ru.war.exceptions.WrongRandomException;
 import ru.war.warclases.Solider;
 import ru.war.warclases.Wizard;
@@ -73,20 +73,20 @@ public class GenerateFights {
                                                new ElfWarrior(), new ElfWarrior(), new ElfWarrior(), new ElfWarrior()));
         } else if (teamAllianceGenerate == 1) {
             this.teamAlliance = new ArrayList<>(asList(new HumanWizard(),
-                                               new HumanArcher(), new HumanArcher(), new HumanArcher(),
+                                               new CrossbowMan(), new CrossbowMan(), new CrossbowMan(),
                                                new HumanWarrior(), new HumanWarrior(), new HumanWarrior(), new HumanWarrior()));
         } else {
             throw new WrongRandomException();
         }
 
         if (teamHordeGenerate == 0) {
-            this.teamHorde = new ArrayList<>(asList(new OrcWizard(),
+            this.teamHorde = new ArrayList<>(asList(new Shaman(),
                                             new OrcArcher(), new OrcArcher(), new OrcArcher(),
-                                            new OrcWarrior(), new OrcWarrior(), new OrcWarrior(), new OrcWarrior()));
+                                            new Goblin(), new Goblin(), new Goblin(), new Goblin()));
         } else if (teamHordeGenerate == 1) {
-            this.teamHorde = new ArrayList<>(asList(new UndeadWizard(),
-                                            new UndeadArcher(), new UndeadArcher(), new UndeadArcher(),
-                                            new UndeadWarrior(), new UndeadWarrior(), new UndeadWarrior(), new UndeadWarrior()));
+            this.teamHorde = new ArrayList<>(asList(new Necromancer(),
+                                            new Hunter(), new Hunter(), new Hunter(),
+                                            new Zomby(), new Zomby(), new Zomby(), new Zomby()));
         } else {
             throw new WrongRandomException();
         }

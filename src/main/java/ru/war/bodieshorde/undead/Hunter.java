@@ -7,7 +7,7 @@ import ru.war.warclases.Solider;
 /**
  * Охотник. Нежить.
  */
-public class UndeadArcher extends Archer implements Undead {
+public class Hunter extends Archer implements Undead {
     /**
      * Дистанционная атака.
      * @param target враг.

@@ -7,7 +7,7 @@ import ru.war.warclases.Warrior;
 /**
  * Гоблин.
  */
-public class OrcWarrior extends Warrior implements Orc {
+public class Goblin extends Warrior implements Orc {
     /**
      * Мили атака. Может быть двойной если Waaaaaaaaagh!
      * @param target цель враг.

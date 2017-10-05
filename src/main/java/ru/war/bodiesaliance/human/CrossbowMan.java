@@ -7,7 +7,7 @@ import ru.war.warclases.Solider;
 /**
  * Человек Арбалетчик.
  */
-public class HumanArcher extends Archer implements Human {
+public class CrossbowMan extends Archer implements Human {
 
     /**
      * Дистанционная атака. Может быть двойной если благославлен! Урон может быть снижен если проклят Некромантом.

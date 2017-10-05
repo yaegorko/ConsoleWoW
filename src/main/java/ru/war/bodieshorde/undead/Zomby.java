@@ -7,7 +7,7 @@ import ru.war.warclases.Warrior;
 /**
  * Зомби. Нежить.
  */
-public class UndeadWarrior extends Warrior implements Undead {
+public class Zomby extends Warrior implements Undead {
     /**
      * Мили атака.
      * @param target цель враг.

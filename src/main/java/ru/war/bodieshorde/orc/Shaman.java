@@ -10,14 +10,14 @@ import java.util.Random;
 /**
  * Орк Шаман.
  */
-public class OrcWizard extends Wizard implements Orc {
+public class Shaman extends Wizard implements Orc {
 
     /**
      * Шаман снимает баффы.
      * @param target враг.
      */
     public void debuff(Solider target) {
-        System.out.println(String.format("%s Снимаю улучшение на %s", this.toString(), target.toString()));
+        System.out.println(String.format("%s Снимаю улучшение с %s", this.toString(), target.toString()));
         target.setBlesed(false);
     }
 

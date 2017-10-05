@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Некромант.
  */
-public class UndeadWizard extends Wizard implements Undead {
+public class Necromancer extends Wizard implements Undead {
 
     /**
      * Дистанционная атака.

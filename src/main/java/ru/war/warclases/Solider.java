@@ -1,6 +1,6 @@
 package ru.war.warclases;
 
-public  abstract class Solider {
+public abstract class Solider {
 
     int health = 100;
 

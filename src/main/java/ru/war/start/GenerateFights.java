@@ -16,18 +16,21 @@ import ru.war.exceptions.WrongRandomException;
 import ru.war.warclases.Solider;
 import ru.war.warclases.Wizard;
 
+import java.util.ArrayList;
 import java.util.Random;
+
+import static java.util.Arrays.asList;
 
 public class GenerateFights {
 
-    private Solider[] teamAlliance = new Solider[8];
-    private Solider[] teamHorde = new Solider[8];
+    private ArrayList<Solider> teamAlliance;
+    private ArrayList<Solider> teamHorde;
 
-    public Solider[] getTeamAlliance() {
+    public ArrayList<Solider> getTeamAlliance() {
         return teamAlliance;
     }
 
-    public Solider[] getTeamHorde() {
+    public ArrayList<Solider> getTeamHorde() {
         return teamHorde;
     }
 
@@ -41,25 +44,25 @@ public class GenerateFights {
         int teamAllianceGenerate = random(2);
         int teamHordeGenerate = random(2);
         if (teamAllianceGenerate == 0) {
-            this.teamAlliance = new Solider[] {new ElfWizard(),
+            this.teamAlliance = new ArrayList<>(asList(new ElfWizard(),
                                                new ElfArcher(), new ElfArcher(), new ElfArcher(),
-                                               new ElfWarrior(), new ElfWarrior(), new ElfWarrior(), new ElfWarrior()};
+                                               new ElfWarrior(), new ElfWarrior(), new ElfWarrior(), new ElfWarrior()));
         } else if (teamAllianceGenerate == 1){
-            this.teamAlliance = new Solider[] {new HumanWizard(),
+            this.teamAlliance = new ArrayList<>(asList(new HumanWizard(),
                                                new HumanArcher(), new HumanArcher(), new HumanArcher(),
-                                               new HumanWarrior(), new HumanWarrior(), new HumanWarrior(), new HumanWarrior()};
+                                               new HumanWarrior(), new HumanWarrior(), new HumanWarrior(), new HumanWarrior()));
         } else {
             throw new WrongRandomException();
         }
 
         if (teamHordeGenerate == 0) {
-            this.teamHorde = new Solider[] {new OrcWizard(),
+            this.teamHorde = new ArrayList<>(asList(new OrcWizard(),
                                             new OrcArcher(), new OrcArcher(), new OrcArcher(),
-                                            new OrcWarrior(), new OrcWarrior(), new OrcWarrior(), new OrcWarrior()};
+                                            new OrcWarrior(), new OrcWarrior(), new OrcWarrior(), new OrcWarrior()));
         } else if (teamHordeGenerate == 1) {
-            this.teamHorde = new Solider[] {new UndeadWizard(),
+            this.teamHorde = new ArrayList<>(asList(new UndeadWizard(),
                                             new UndeadArcher(), new UndeadArcher(), new UndeadArcher(),
-                                            new UndeadWarrior(), new UndeadWarrior(), new UndeadWarrior(), new UndeadWarrior()};
+                                            new UndeadWarrior(), new UndeadWarrior(), new UndeadWarrior(), new UndeadWarrior()));
         } else {
             throw new WrongRandomException();
         }
@@ -77,56 +80,85 @@ public class GenerateFights {
         }
     }
 
-    int number = 8;
+    public int checkTeamFatigue(ArrayList<Solider> team) {
 
-    public void fight(Solider[] team1, Solider[] team2) {
+        int count = 0;
+        for (Solider solider: team) {
+            if (solider.isFatigue()) {
+                count++;
+            }
+        }
+        return count;
+    }
 
+    public void removeTeamFatigue(ArrayList<Solider> team) {
+        for (Solider solider: team) {
+            solider.setFatigue(false);
+        }
+    }
+    int count = 0;
+    public void fight(ArrayList<Solider> team1, ArrayList<Solider> team2) {
 
-        while (number >= 0) {
-            action(team1, team2);
-            action(team2, team1);
+        while (true) {
+            if (team1.size() == 0 || team2.size() == 0) {
+                break;
+            }
+            if (team1.size() > 0 & team2.size() > 0) {
+                action(team1, team2);
+            }
+
+            if (team1.size() > 0 & team2.size() > 0) {
+                action(team2, team1);
+            }
+
+            if (checkTeamFatigue(team1) == team1.size()) {
+                removeTeamFatigue(team1);
+            }
+            if (checkTeamFatigue(team2) == team2.size()) {
+                removeTeamFatigue(team2);
+            }
+            count++;
         }
 
-
-        if (number == 0) {
-            for (Solider solider : team1) {
-                solider.setFatigue(false);
-            }
-            for (Solider solider : team2) {
-                solider.setFatigue(false);
-            }
-
-            number = 8;
-            fight(team1, team2);
+        if ((team1.size() > 0 && team2.size() == 0)) {
+            System.out.println("Конец боя за " + count + " ходов. Победил " + team1);
+        } else if (team1.size() == 0 && team2.size() > 0) {
+            System.out.println("Конец боя за " + count + " ходов. Победил " + team2);
         }
     }
 
+    public void action(ArrayList<Solider> teamAttack, ArrayList<Solider> teamDefence) {
 
+        int actionSoliderNumber;
 
-    public void action(Solider[] teamAttack, Solider[] teamDefence) {
-        int soliderNumber;
-        int enemySoliderNumber = random(8);
-        int allySoliderNumber = random(8);
-        if (number > 0) {
-            soliderNumber = random(number);
-        } else soliderNumber = random(1);
-
-        if (!teamAttack[soliderNumber].isFatigue()) {
-            if (teamAttack[soliderNumber] instanceof Wizard) {
-                teamAttack[soliderNumber].chooseAction(teamDefence[enemySoliderNumber], teamAttack[allySoliderNumber]);
-            } else {
-                teamAttack[soliderNumber].chooseAction(teamDefence[enemySoliderNumber]);
-            }
-            teamAttack[soliderNumber].setFatigue(true);
-            if (soliderNumber != 7) {
-                Solider temp = teamAttack[soliderNumber];
-                for (int i = soliderNumber + 1; i < teamAttack.length; i++) {
-                    teamAttack[i - 1] = teamAttack[i];
-                }
-                teamAttack[teamAttack.length - 1] = temp;
-            }
+        if (teamAttack.size() != checkTeamFatigue(teamAttack)) {
+            actionSoliderNumber = random(teamAttack.size() - checkTeamFatigue(teamAttack));
         } else {
-            number--;
+            removeTeamFatigue(teamAttack);
+            actionSoliderNumber = random(teamAttack.size());
+        }
+
+        int allySoliderNumber = random(teamAttack.size());
+        int enemySoliderNumber = random(teamDefence.size());
+
+        if (!teamAttack.get(actionSoliderNumber).isFatigue()) {
+            if (teamAttack.get(actionSoliderNumber) instanceof Wizard) {
+                teamAttack.get(actionSoliderNumber).chooseAction(teamDefence.get(enemySoliderNumber), teamAttack.get(allySoliderNumber));
+            } else {
+                teamAttack.get(actionSoliderNumber).chooseAction(teamDefence.get(enemySoliderNumber));
+            }
+            teamAttack.get(actionSoliderNumber).setFatigue(true);
+            Solider temp = teamAttack.get(actionSoliderNumber);
+            teamAttack.remove(actionSoliderNumber);
+            teamAttack.add(teamAttack.size(), temp);
+
+            if (teamDefence.get(enemySoliderNumber).getHealth() <= 0) {
+                System.out.println(teamDefence.get(enemySoliderNumber).toString() + " Умер!");
+                teamDefence.remove(teamDefence.get(enemySoliderNumber));
+            }
+
+        } else {
+            return;
         }
     }
 }

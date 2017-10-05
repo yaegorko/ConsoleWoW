@@ -16,9 +16,9 @@ public abstract class Wizard extends Solider {
 
     public void chooseAction(Solider targetEnemy, Solider targetAlly) {
         Random random = new Random();
-        int num = random.nextInt(1);
+        int num = random.nextInt(2);
         if (num == 0) {
-            cast(targetAlly);
+            buff(targetAlly);
         } else if (num == 1) {
             rangeAttack(targetEnemy);
         } else {
@@ -26,8 +26,8 @@ public abstract class Wizard extends Solider {
         }
     }
 
-    public void cast(Solider target) {
-        System.out.println(String.format("%s Накладываю улучшение магией %s на 10!", this.toString(), target.toString()));
+    public void buff(Solider target) {
+        System.out.println(String.format("%s Накладываю улучшение на %s!", this.toString(), target.toString()));
         target.setBlesed(true);
     }
 }

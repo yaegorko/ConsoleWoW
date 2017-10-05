@@ -20,9 +20,9 @@ public class OrcWizard extends Wizard implements Orc {
     @Override
     public void chooseAction(Solider targetEnemy, Solider targetAlly) {
         Random random = new Random();
-        int num = random.nextInt(1);
+        int num = random.nextInt(2);
         if (num == 0) {
-            super.cast(targetAlly);
+            super.buff(targetAlly);
         } else if (num == 1) {
             debuff(targetEnemy);
         } else {
